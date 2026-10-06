@@ -8,6 +8,23 @@ pr:
 - dev
 
 jobs:
+- job: php84deprecations
+  displayName: 'PHP 8.4 deprecation check'
+  timeoutInMinutes: 15
+
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - script: jq 'del(."require-dev")' composer.json > composer.runtime.json
+    displayName: 'Create runtime-only composer.json'
+
+  - script: docker run --rm -v "$(Build.SourcesDirectory)":/app -w /app -e COMPOSER=composer.runtime.json composer:2 composer update --no-interaction --prefer-dist
+    displayName: 'composer install (runtime dependencies)'
+
+  - script: docker run --rm -v "$(Build.SourcesDirectory)":/app -w /app php:8.4-cli php tests/check-deprecations.php
+    displayName: 'Check for deprecations on PHP 8.4'
+
 - job: fullvalidation
   timeoutInMinutes: 120
 

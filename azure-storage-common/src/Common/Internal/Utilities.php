@@ -260,7 +260,7 @@ class Utilities
      *
      * @return array
      */
-    private static function _sxml2arr($sxml, array $arr = null)
+    private static function _sxml2arr($sxml, ?array $arr = null)
     {
         foreach ((array) $sxml as $key => $value) {
             if (is_object($value) || (is_array($value))) {
@@ -751,7 +751,7 @@ class Utilities
      *
      * @return void
      */
-    public static function validateMetadata(array $metadata = null)
+    public static function validateMetadata(?array $metadata = null)
     {
         if (!is_null($metadata)) {
             Validate::isArray($metadata, 'metadata');
@@ -903,5 +903,25 @@ class Utilities
     public static function is64BitPHP()
     {
         return PHP_INT_SIZE == 8;
+    }
+
+    /**
+     * Converts an ISO-8859-1 string to UTF-8. Equivalent to the deprecated
+     * utf8_encode() and does not depend on the mbstring or iconv extensions.
+     *
+     * @param  string $value The ISO-8859-1 encoded string.
+     *
+     * @return string
+     */
+    public static function latin1ToUtf8($value)
+    {
+        return preg_replace_callback(
+            '/[\x80-\xFF]/',
+            function ($matches) {
+                $byte = ord($matches[0]);
+                return chr(0xC0 | ($byte >> 6)) . chr(0x80 | ($byte & 0x3F));
+            },
+            $value
+        );
     }
 }

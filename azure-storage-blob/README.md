@@ -22,7 +22,7 @@ Please check details on [API reference documents](https://azure.github.io/azure-
 # Getting Started
 ## Minimum Requirements
 
-* PHP 5.6 or above
+* PHP 7.1 or above
 * See [composer.json](composer.json) for dependencies
 * Required extension for PHP:
   * php_fileinfo.dll

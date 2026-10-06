@@ -655,4 +655,25 @@ class UtilitiesTest extends \PHPUnit\Framework\TestCase
         $this->assertCount(1, $actual);
         $this->assertEquals($value, $actual[$key]);
     }
+
+    public function testLatin1ToUtf8MatchesUtf8Encode()
+    {
+        if (!function_exists('utf8_encode')) {
+            $this->markTestSkipped('utf8_encode() is not available.');
+        }
+
+        // Setup
+        $inputs = array('', "plain ascii\n", "caf\xE9 \x80\xFF mixed\x7F");
+        for ($byte = 0; $byte < 256; $byte++) {
+            $inputs[] = chr($byte);
+        }
+
+        foreach ($inputs as $input) {
+            // Test
+            $actual = Utilities::latin1ToUtf8($input);
+
+            // Assert
+            $this->assertSame(@utf8_encode($input), $actual);
+        }
+    }
 }

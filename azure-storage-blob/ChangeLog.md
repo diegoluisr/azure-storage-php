@@ -1,3 +1,7 @@
+Upcoming
+* Added PHP 8.4 compatibility: optional typed parameters now declare explicit nullable types (`?Type $x = null`), removing the "Implicitly marking parameter as nullable is deprecated" notices.
+* Minimum required PHP version is now 7.1.
+
 2022.08 - version 1.5.4
 * Check `$copyProgress` is not null before using it in `strpos`.
 

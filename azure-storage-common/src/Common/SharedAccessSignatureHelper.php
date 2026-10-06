@@ -149,7 +149,7 @@ class SharedAccessSignatureHelper
         $parameters[] = $signedVersion;
 
         // implode the parameters into a string
-        $stringToSign = utf8_encode(implode("\n", $parameters) . "\n");
+        $stringToSign = Utilities::latin1ToUtf8(implode("\n", $parameters) . "\n");
 
         // decode the account key from base64
         $decodedAccountKey = base64_decode($this->accountKey);

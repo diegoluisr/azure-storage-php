@@ -10,8 +10,8 @@
         }
     ],
     "require": {
-        "php": ">=5.6.0",
-		"guzzlehttp/guzzle": "~6.0|^7.0"
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "~6.0|^7.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.8.35",
@@ -34,9 +34,9 @@
         }
     },
     "autoload-dev": {
-    	"psr-4": {
-    	    "MicrosoftAzure\\Storage\\Tests\\": "tests/"
-    	}
+        "psr-4": {
+            "MicrosoftAzure\\Storage\\Tests\\": "tests/"
+        }
     },
     "archive": {
         "exclude": ["/tests"]

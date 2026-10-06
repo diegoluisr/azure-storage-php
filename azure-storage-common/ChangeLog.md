@@ -1,3 +1,9 @@
+Upcoming
+* Added PHP 8.4 compatibility: optional typed parameters now declare explicit nullable types (`?Type $x = null`), removing the "Implicitly marking parameter as nullable is deprecated" notices.
+* Replaced the deprecated `utf8_encode()` call in `SharedAccessSignatureHelper` with `Utilities::latin1ToUtf8()`; generated signatures are unchanged.
+* `CommonRequestMiddleware` constructor declares `$authenticationScheme` as `?IAuthScheme` without a default, since it is followed by required parameters.
+* Minimum required PHP version is now 7.1.
+
 2021.09 - version 1.5.2
 * Added support for guzzle 7.3.
 * Resolve some warnings when calling `Psr7\stream_for`, uses `Utils::streamFor` instead.

@@ -1,3 +1,7 @@
+Upcoming
+* Added PHP 8.4 compatibility: optional typed parameters now declare explicit nullable types (`?Type $x = null`), removing the "Implicitly marking parameter as nullable is deprecated" notices.
+* Minimum required PHP version is now 7.1.
+
 2021.09 - version 1.2.5
 * Upgraded dependency for `azure-storage-common` to version 1.5.2.
 
